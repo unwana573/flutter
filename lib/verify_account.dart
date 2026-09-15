@@ -7,41 +7,78 @@ class VerifyAccount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Column(
       children: [
-        Center(
-          child: Image.asset(
-            "assets/images/envelop.png",
-            width: 200,
-            height: 200,
-        ),
-        ),
-
-        Text(
-          "Verify your account",
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 30
+        Container(
+          height: 160,
+          width: double.infinity,
+          decoration: const BoxDecoration(
+          ),
+          clipBehavior: Clip.antiAlias,
+          child: Stack(
+            children: [
+              ClipPath(
+                clipper: BottomRightArcClipper(),
+                child: Container(
+                  color: const Color(0xFF033977),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(20),
+                child: IconButton(
+                  onPressed: () => Navigator.pop(context),
+                  icon: const Icon(
+                    Icons.arrow_back,
+                    color: Colors.white,
+                    size: 26,
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
 
-        Text(
-          "We`ve sent a 6-digit verification code \n to your email",
-          textAlign: TextAlign.center,
-          style: TextStyle(
-            fontSize: 17,
-          ),
-        ),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 25),
+          child: Column(
+            children: [
 
-        SizedBox(height: 20,),
+            Center(
+              child: Image.asset(
+                "assets/images/envelop.png",
+                width: 200,
+                height: 200,
+            ),
+            ),
 
-        Row(
+            Text(
+              "Verify your account",
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 30
+              ),
+            ),
+
+            Text(
+              "We`ve sent a 5-digit verification code \n to your email",
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 17,
+              ),
+            ),
+
+            SizedBox(height: 20,),
+
+            Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: List.generate(6, (index) {
-                return SizedBox(
-                  width: 50,
-                  height: 130,
-                  child: TextField(
+              children: List.generate(5, (index) {
+                return Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 5),
+                  child: SizedBox(
+                    width: 50,
+                    height: 130,
+                    child: TextField(
                     textAlign: TextAlign.center,
                     keyboardType: TextInputType.number,
                     maxLength: 1,
@@ -65,63 +102,88 @@ class VerifyAccount extends StatelessWidget {
                       }
                     },
                   ),
+                )
                 );
-              }),
-          ),
-
-          Text(
-            "Resend code in 00:30",
-            style: TextStyle(
-              color: Colors.blue,
-              fontSize: 20
-            ),
-          ),
-
-          TextButton(
-            onPressed: () {}, 
-            child: Text(
-              "Resend code",
-              style: TextStyle(
-                color: Colors.orange
+                }),
               ),
-            )
-          ),
 
-          SizedBox(height: 50),
+              Text(
+                "Resend code in 00:30",
+                style: TextStyle(
+                  color: Colors.blue,
+                  fontSize: 20
+                ),
+              ),
 
-          ElevatedButton(
-              onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context){
-                              return VerifiedPage();
-                          }
-                          )
-                  );
-              }, 
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF0A2472),
-                  fixedSize: Size(390, 50),                            
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),                                    
+              TextButton(
+                onPressed: () {}, 
+                child: Text(
+                  "Resend code",
+                  style: TextStyle(
+                    color: Colors.orange
                   ),
+                )
               ),
-              child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                      Text(
-                          "Verify Account",
-                              textAlign: TextAlign.center,
-                          style: TextStyle(
-                              color: Colors.white,
-                          )
-                      ),
-              ],
-          )),
 
-      ],
+              SizedBox(height: 50),
+
+              ElevatedButton(
+                  onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context){
+                                  return VerifiedPage();
+                              }
+                              )
+                      );
+                  }, 
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF033977),
+                      fixedSize: Size(390, 50),                            
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15),                                    
+                      ),
+                  ),
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                          Text(
+                              "Verify Account",
+                                textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 17
+                              )
+                          ),
+                  ],
+              )),
+              ],
+              )
+      ),    
+      ],    
       )
     );
   }
+}
+
+class BottomRightArcClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    final path = Path();
+
+    path.moveTo(0, 0);
+    path.lineTo(size.width * 0.5, 0);
+    path.quadraticBezierTo(
+      size.width * 0.5, size.height * 0.9,
+      0, size.height * 0.9,
+    );
+    path.lineTo(0, size.height);
+    path.close();
+
+    return path;
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> oldClipper) => false;
 }

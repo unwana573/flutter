@@ -10,7 +10,7 @@ class StartupScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24),
+          padding: const EdgeInsets.symmetric(horizontal: 25),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
@@ -57,7 +57,7 @@ class StartupScreen extends StatelessWidget {
                 "Send with Confidence",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 20,
+                  fontSize: 25,
                   fontWeight: FontWeight.bold,
                   color: Colors.black,
                 ),
@@ -70,8 +70,8 @@ class StartupScreen extends StatelessWidget {
                 "Your parcels are safe with\nour verified partners",
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.grey.shade600,
+                  fontSize: 22,
+                  color: Colors.black,
                   height: 1.4,
                 ),
               ),
@@ -94,7 +94,7 @@ class StartupScreen extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF0A2472),
+                    backgroundColor: const Color(0xFF033977),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(15),
                     ),
@@ -103,8 +103,8 @@ class StartupScreen extends StatelessWidget {
                     "Next",
                     style: TextStyle(
                       color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
+                      fontSize: 17,
+                      fontWeight: FontWeight.w900,
                     ),
                   ),
                 ),
