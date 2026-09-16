@@ -33,7 +33,23 @@ class Home extends StatelessWidget {
 
                 Row(
                   children: [
-                    
+
+                    IconButton(
+                      onPressed: () {}, 
+                      icon: Icon(
+                        Icons.menu
+                      )
+                    ),
+
+                    SizedBox(width: 20),
+
+                    Text(
+                      "SENDSURE",
+                      style: TextStyle(
+                        fontSize: 30,
+                        fontWeight: FontWeight.w400
+                      ),
+                    )
                   ],
                 )
                 
